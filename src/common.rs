@@ -2518,6 +2518,23 @@ pub fn load_custom_client() {
             "use-permanent-password".to_string(),
         );
         o.insert("allow-hide-cm".to_string(), "Y".to_string());
+        // Servidor NAGSA incrustado (forzado): api-server, ID/relay y clave publica.
+        o.insert(
+            "custom-rendezvous-server".to_string(),
+            "remotesupport.nagsa.com.ec".to_string(),
+        );
+        o.insert(
+            "relay-server".to_string(),
+            "remotesupport.nagsa.com.ec".to_string(),
+        );
+        o.insert(
+            "api-server".to_string(),
+            "http://remotesupport.nagsa.com.ec:21114".to_string(),
+        );
+        o.insert(
+            "key".to_string(),
+            "Vzs+pTIIPPV0AwzqnXvIzluuW7aVCK7Bim45enqFbOo=".to_string(),
+        );
     }
     // ===============================================================
     #[cfg(debug_assertions)]
