@@ -2507,6 +2507,19 @@ pub fn rustdesk_interval(i: Interval) -> ThrottledInterval {
 }
 
 pub fn load_custom_client() {
+    // ===== NAGSA: forzar modo desatendido + ocultar ventana CM =====
+    // Inyectado en OVERWRITE_SETTINGS (maxima prioridad, sobre archivo y UI) para
+    // que hide_cm() de true en todo proceso/sesion sin depender de la config local.
+    {
+        let mut o = hbb_common::config::OVERWRITE_SETTINGS.write().unwrap();
+        o.insert("approve-mode".to_string(), "password".to_string());
+        o.insert(
+            "verification-method".to_string(),
+            "use-permanent-password".to_string(),
+        );
+        o.insert("allow-hide-cm".to_string(), "Y".to_string());
+    }
+    // ===============================================================
     #[cfg(debug_assertions)]
     if let Ok(data) = std::fs::read_to_string("./custom.txt") {
         read_custom_client(data.trim());
